@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """filtered_logger module"""
-import logging
+import logging,re
 
 class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class """
@@ -18,5 +18,6 @@ class RedactingFormatter(logging.Formatter):
         record.msg = self.SEPARATOR.join(filtered_values)
         return super().format(record)
 
-    def filter_datum(self, message: str) -> str:
-        return self.REDACTION
+def filter_datum(fields: list[str], redaction: str, message: str, separator: str) -> str:
+    return re.sub(f'(?<=^|{separator})({"|".join(fields)})=[^{separator}]+', f'{redaction}', message)
+
