@@ -2,7 +2,7 @@
 
 ***Backend Authentication***
 
-![image](./5c48d4f6d4dd8081eb48.png.crdownload)
+![image](./5c48d4f6d4dd8081eb48.png)
 
 ## Resources
 
