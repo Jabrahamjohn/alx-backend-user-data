@@ -53,7 +53,8 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         host=host,
         database=database
         )
+        print("Connection to database established")
         return connection
     except Exception as e:
+        print(f"Error connecting to database: {e}")
         exit(e)
-        
