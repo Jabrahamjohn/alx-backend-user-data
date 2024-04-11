@@ -24,3 +24,5 @@ class RedactingFormatter(logging.Formatter):
     
     def filter_datum(self, field: str) -> str:
         return filter_datum(self.fields, self.REDACTION, field, self.SEPARATOR)
+
+PII_FIELDS = ('name', 'email' , 'phone', 'ssn', 'password', 'ip', 'last_login', 'user_agent')
