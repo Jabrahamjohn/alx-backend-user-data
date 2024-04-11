@@ -22,4 +22,5 @@
 
 ### files
 
-filtered_logger.py
+- [filtered_logger]
+- [encrypt_password]
