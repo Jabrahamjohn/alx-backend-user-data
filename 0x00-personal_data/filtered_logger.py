@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """filtered_logger module"""
 import logging,re
+from logging import StreamHandler
+
+def filter_datum(fields: list[str], redaction: str, message: str, separator: str) -> str:
+        return re.sub(f'(?<=^|{separator})({"|".join(fields)})=[^{separator}]+', f'{redaction}', message)
 
 class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class """
@@ -17,7 +21,6 @@ class RedactingFormatter(logging.Formatter):
         filtered_values = map(self.filter_datum, [getattr(record, field, '') for field in self.fields])
         record.msg = self.SEPARATOR.join(filtered_values)
         return super().format(record)
-
-def filter_datum(fields: list[str], redaction: str, message: str, separator: str) -> str:
-    return re.sub(f'(?<=^|{separator})({"|".join(fields)})=[^{separator}]+', f'{redaction}', message)
-
+    
+    def filter_datum(self, field: str) -> str:
+        return filter_datum(self.fields, self.REDACTION, field, self.SEPARATOR)
