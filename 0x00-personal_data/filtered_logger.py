@@ -27,7 +27,7 @@ class RedactingFormatter(logging.Formatter):
     def filter_datum(self, field: str) -> str:
         return filter_datum(self.fields, self.REDACTION, field, self.SEPARATOR)
 
-PII_FIELDS = ('phone', 'ssn', 'password', 'ip','user_agent')
+PII_FIELDS = ('name','email', 'phone', 'ssn', 'password')
 
 def get_logger() -> logging.Logger:
     """ get_logger function """
@@ -58,3 +58,12 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     except Exception as e:
         print(f"Error connecting to database: {e}")
         exit(e)
+
+def main():
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM users")
+    for row in cursor:
+        print(row)
+    cursor.close()
+    db.close()
