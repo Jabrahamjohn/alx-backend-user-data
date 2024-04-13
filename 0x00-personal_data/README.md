@@ -23,4 +23,4 @@
 ### files
 
 - [filtered_logger]()
-- [encrypt_password]
+- [encrypt_password]()
