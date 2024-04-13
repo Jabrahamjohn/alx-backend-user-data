@@ -23,4 +23,4 @@
 ### files
 
 - [filtered_logger](./filtered_logger.py)
-- [encrypt_password]()
+- [encrypt_password](./encrypt_password.py)
